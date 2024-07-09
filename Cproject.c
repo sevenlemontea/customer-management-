@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 /**
-* admin£ºÆß±­ÄûÃÊ²è
-* Time£º 2024/7/1 20:59
+* adminï¼šä¸ƒæ¯æŸ æª¬èŒ¶
+* Timeï¼š 2024/7/1 20:59
 *
 */
 
@@ -14,77 +14,80 @@ typedef struct user{
     char email[20];
 } USER;
 /**
-* º¯ÊıÃû£ºÌí¼Ó¿Í»§
-* ×÷Õß£ºlemontea
-* ÈÕÆÚ£º
-* ¹¦ÄÜ£ºÊµÏÖÌí¼Ó¿Í»§
-* ²ÎÊı£ºÎŞ
-* ·µ»ØÖµ£ºUSERÀàĞÍ
-* ĞŞ¸Ä¼ÇÂ¼:
+* å‡½æ•°åï¼šæ·»åŠ å®¢æˆ·
+* ä½œè€…ï¼šlemontea
+* æ—¥æœŸï¼š
+* åŠŸèƒ½ï¼šå®ç°æ·»åŠ å®¢æˆ·
+* å‚æ•°ï¼šæ— 
+* è¿”å›å€¼ï¼šUSERç±»å‹
+* ä¿®æ”¹è®°å½•:
 */
 USER  *add_user(){
     static USER u;
-    printf("\n----------Ìí ¼Ó ¿Í »§----------\n");
-    printf("ĞÕÃû:");
+    printf("\n----------æ·» åŠ  å®¢ æˆ·----------\n");
+    printf("å§“å:");
     scanf("%s",&u.name);
-    printf("ĞÔ±ğ:");
+    printf("æ€§åˆ«:");
     scanf("%s",&u.sex);
-    printf("ÄêÁä:");
+    printf("å¹´é¾„:");
     scanf("%d",&u.age);
-    printf("µç»°:");
+    printf("ç”µè¯:");
     scanf("%d",&u.iphone_number);
-    printf("ÓÊÏä:");
+    printf("é‚®ç®±:");
     scanf("%s",&u.email);
 
     return &u;
 }
 /**
-* º¯ÊıÃû£ºĞŞ¸Ä¿Í»§
-* ×÷Õß£ºlemontea
-* ÈÕÆÚ£º
-* ¹¦ÄÜ£ºÊä³ö´«À´µÄĞÅÏ¢ĞŞ¸ÄĞÅÏ¢
-* ²ÎÊı£ºUSERÀàĞÍµÄÊı¾İ
-* ·µ»ØÖµ£ºUSERÀàĞÍ
-* ĞŞ¸Ä¼ÇÂ¼:
+* å‡½æ•°åï¼šä¿®æ”¹å®¢æˆ·
+* ä½œè€…ï¼šlemontea
+* æ—¥æœŸï¼š
+* åŠŸèƒ½ï¼šè¾“å‡ºä¼ æ¥çš„ä¿¡æ¯ä¿®æ”¹ä¿¡æ¯
+* å‚æ•°ï¼šUSERç±»å‹çš„æ•°æ®
+* è¿”å›å€¼ï¼šUSERç±»å‹
+* ä¿®æ”¹è®°å½•:
 */
 USER *update_user(USER *u){
     static USER user;
-    printf("\n----------ĞŞ ¸Ä ¿Í »§----------\n");
-    printf("ĞÕÃû(%s):",&u->name);
+    printf("\n----------ä¿® æ”¹ å®¢ æˆ·----------\n");
+    printf("å§“å(%s):",&u->name);
     scanf("%s",&user.name);
-    printf("ĞÔ±ğ(%s):",u->sex);
+    printf("æ€§åˆ«(%s):",u->sex);
     scanf("%s",&user.sex);
-    printf("ÄêÁä(%d):",u->age);
+    printf("å¹´é¾„(%d):",u->age);
     scanf("%d",&user.age);
-    printf("µç»°(%d):",u->iphone_number);
+    printf("ç”µè¯(%d):",u->iphone_number);
     scanf("%d",&user.iphone_number);
-    printf("ÓÊÏä(%s):",u->email);
+    printf("é‚®ç®±(%s):",u->email);
     scanf("%s",&user.email);
     return &user;
 }
 
-void delete_user(USER *u,int id,int *len){
+int delete_user(USER *u,int id,int *len){
     char is_delete;
-    printf("È·ÈÏÊÇ·ñÉ¾³ı(Y/N)\n");
+    printf("ç¡®è®¤æ˜¯å¦åˆ é™¤(Y/N)\n");
     getchar();
     scanf("%c",&is_delete);
     if(is_delete=='Y'||is_delete=='y'){
             for(int j = id;j < *len;j++){
                 u[j]=u[j+1];
         }
+        return 1;
     } else if(is_delete=='N'||is_delete=='n'){
-        printf("\n----------È¡ Ïû É¾ ³ı----------\n");
+        printf("\n----------å– æ¶ˆ åˆ  é™¤----------\n");
+        return 0;
     } else{
-        printf("ÊäÈë´íÎóÇëÖØĞÂÊäÈë\n");
+        printf("è¾“å…¥é”™è¯¯è¯·é‡æ–°è¾“å…¥\n");
+        return 0;
     }
 
 }
 void print_user(USER *u , int len){
     if(len<=0){
-        printf("»¹Ã»ÓĞÊı¾İÇëÄúÏÈÊäÈëÊı¾İ£¡£¡\n");
+        printf("è¿˜æ²¡æœ‰æ•°æ®è¯·æ‚¨å…ˆè¾“å…¥æ•°æ®ï¼ï¼\n");
     }else{
         for (int i = 0; i < len; i++) {
-            printf("\n±àºÅ      ĞÕÃû      ĞÔ±ğ      ÄêÁä      µç»°      ÓÊÏä\n");
+            printf("\nç¼–å·      å§“å      æ€§åˆ«      å¹´é¾„      ç”µè¯      é‚®ç®±\n");
             printf("%d        %s       %s       %d        %d        %s\n",i+1,u[i].name,u[i].sex,u[i].age,u[i].iphone_number,u[i].email);
         }
     }
@@ -92,32 +95,32 @@ void print_user(USER *u , int len){
 }
 int *show_user(){
     static int id;
-    printf("\n----------¿Í»§ĞÅÏ¢¹ÜÀíÈí¼ş----------\n");
-    printf("          1 Ìí ¼Ó ¿Í »§\n");
-    printf("          2 ĞŞ ¸Ä ¿Í »§\n");
-    printf("          3 É¾ ³ı ¿Í »§\n");
-    printf("          4 ¿Í »§ ÁĞ ±í\n");
-    printf("          5 ÍË      ³ö\n");
-    printf("          ÇëÑ¡Ôñ(1-5)\n");
+    printf("\n----------å®¢æˆ·ä¿¡æ¯ç®¡ç†è½¯ä»¶----------\n");
+    printf("          1 æ·» åŠ  å®¢ æˆ·\n");
+    printf("          2 ä¿® æ”¹ å®¢ æˆ·\n");
+    printf("          3 åˆ  é™¤ å®¢ æˆ·\n");
+    printf("          4 å®¢ æˆ· åˆ— è¡¨\n");
+    printf("          5 é€€      å‡º\n");
+    printf("          è¯·é€‰æ‹©(1-5)\n");
     scanf("%d",&id);
 
     return &id;
 }
 
 int main() {
-    //¶¨ÒåĞèÒªĞŞ¸ÄµÄÊı¾İÏÂ±ê
+    //å®šä¹‰éœ€è¦ä¿®æ”¹çš„æ•°æ®ä¸‹æ ‡
     int update_index,user_id=0;
     int delete_id;
     USER user[100];
     while (1){
-        //Õ¹Ê¾Ö÷Ò³Ãæ
+        //å±•ç¤ºä¸»é¡µé¢
         int *id = show_user();
         if(*id>5||*id<=0){
-            printf("ÊäÈë´íÎóÇëÖØĞÂÊäÈë\n");printf("\n");
+            printf("è¾“å…¥é”™è¯¯è¯·é‡æ–°è¾“å…¥\n");printf("\n");
         }
-        //¸ù¾İÓÃ»§ÊäÈëÑ¡Ôñ
+        //æ ¹æ®ç”¨æˆ·è¾“å…¥é€‰æ‹©
         switch (*id) {
-            //Ìí¼ÓÓÃ»§
+            //æ·»åŠ ç”¨æˆ·
             case 1:{
                 USER *u = add_user() ;
                 user[user_id] = *u;
@@ -125,51 +128,53 @@ int main() {
                 print_user(&user,user_id);
                 break;
             }
-            //ĞŞ¸Ä¿Í·şĞÅÏ¢
+            //ä¿®æ”¹å®¢æœä¿¡æ¯
             case 2:{
                 if(user_id>0){
-                    printf("\n----------ĞŞ ¸Ä ¿Í »§----------\n");
-                    printf("ÇëÊäÈëÒªĞŞ¸ÄµÄÓÃ»§±àºÅ:");
+                    printf("\n----------ä¿® æ”¹ å®¢ æˆ·----------\n");
+                    printf("è¯·è¾“å…¥è¦ä¿®æ”¹çš„ç”¨æˆ·ç¼–å·:");
                     scanf("%d",&update_index);
                     user[update_index-1] = *update_user(&user[update_index-1]);
                     print_user(&user,user_id);
                 } else{
-                    printf("Ã»ÓĞ´¢´æ¿Í»§ÇëÄúÏÈÌí¼ÓÓÃ»§\n");
+                    printf("æ²¡æœ‰å‚¨å­˜å®¢æˆ·è¯·æ‚¨å…ˆæ·»åŠ ç”¨æˆ·\n");
                     printf("\n");
                 }
                 break;
             }
-            //É¾³ı¿Í»§ĞÅÏ¢
+            //åˆ é™¤å®¢æˆ·ä¿¡æ¯
             case 3:{
                 if(user_id>0){
-                printf("\n----------É¾ ³ı ¿Í »§----------\n");
-                printf("ÇëÊäÈëÉ¾³ı¿Í»§µÄ±àºÅ:");
+                printf("\n----------åˆ  é™¤ å®¢ æˆ·----------\n");
+                printf("è¯·è¾“å…¥åˆ é™¤å®¢æˆ·çš„ç¼–å·:");
                 scanf("%d",&delete_id);
-                delete_user(&user,delete_id-1,&user_id);
-                user_id--;
+                int is_delete =delete_user(&user,delete_id-1,&user_id);
+                if(is_delete){
+                    user_id--;
+                }
                 if(user_id>0){
                     print_user(&user,user_id);
                 } else{
-                    printf("ÒÑÉ¾³ıËùÓĞ¿Í»§ÇëÏÈÌí¼ÓÓÃ»§\n");
+                    printf("å·²åˆ é™¤æ‰€æœ‰å®¢æˆ·è¯·å…ˆæ·»åŠ ç”¨æˆ·\n");
                 }
                 } else{
-                printf("Ã»ÓĞ´¢´æ¿Í»§ÇëÄúÏÈÌí¼ÓÓÃ»§\n");
+                printf("æ²¡æœ‰å‚¨å­˜å®¢æˆ·è¯·æ‚¨å…ˆæ·»åŠ ç”¨æˆ·\n");
                 printf("\n");
             }
                 break;
             }
-            //Õ¹Ê¾ÓÃ»§ĞÅÏ¢
+            //å±•ç¤ºç”¨æˆ·ä¿¡æ¯
             case 4:{
                 if(user_id>0){
                 print_user(&user,user_id);
                 } else{
-                    printf("Ã»ÓĞ´¢´æ¿Í»§ÇëÄúÏÈÌí¼ÓÓÃ»§\n");
+                    printf("æ²¡æœ‰å‚¨å­˜å®¢æˆ·è¯·æ‚¨å…ˆæ·»åŠ ç”¨æˆ·\n");
                     printf("\n");
                 }
                 break;
 
             }
-            //ÍË³ö³ÌĞò
+            //é€€å‡ºç¨‹åº
             case 5:
                 goto END;
         }
@@ -180,6 +185,6 @@ int main() {
 
 
     END:
-    printf("³ÌĞò½áÊø");
+    printf("ç¨‹åºç»“æŸ");
     return 0;
 }
